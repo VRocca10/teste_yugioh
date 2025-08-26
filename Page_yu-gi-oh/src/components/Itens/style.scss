@@ -1,0 +1,74 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .topo-controles {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+
+        .dropdown-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            .dropdown {
+                padding: 0.4rem 0.6rem;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
+        }
+    }
+
+    .lista-cards {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); // no máx 5 por linha
+        gap: 1rem; // espaçamento entre cards
+    }
+
+    .paginacao {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.4rem;
+
+        button {
+            border: none;
+            background: #e0e0e0;
+            color: #000;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+
+            &:hover {
+                background: #cfcfcf;
+            }
+
+            &.ativo {
+                background: #28a745;
+                color: #fff;
+                font-weight: bold;
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+
+        button:first-child,
+        button:last-child {
+            background: transparent;
+            color: #28a745;
+            font-size: 1.2rem;
+            padding: 0.3rem 0.6rem;
+
+            &:hover {
+                background: #e9f7ef;
+            }
+        }
+    }
+}

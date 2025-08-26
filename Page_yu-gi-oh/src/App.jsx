@@ -1,11 +1,13 @@
 import Home from "./pages/home/home.jsx";
-import Navbar from "./components/navbar/navbar.jsx"
+
+
+
 function App() {
 
   return (
-      <div>
-        <Navbar />
-      </div>
+    <div>
+      <Home />
+    </div>
   )
 }
 

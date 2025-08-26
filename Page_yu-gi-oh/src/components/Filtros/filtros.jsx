@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style.css';
+import './style.scss';
 
 function Navbar() {
     const categorias = [
@@ -9,6 +9,10 @@ function Navbar() {
         'Insect', 'Light', 'Link', 'Machine', 'Monster', 'N/A', 'Normal',
         'Pendulum', 'Plant', 'Psychic', 'Pyro', 'Reptile'
     ];
+
+    const cartas = [
+        'Armadilha', 'Counter', 'Mágica', 'Monstro', 'Skill Card', 'Token'
+    ]
 
     const [selecionados, setSelecionados] = useState([]);
 
@@ -22,7 +26,8 @@ function Navbar() {
 
     return (
         <div className="filtros-container">
-            <h3 className="filtros-titulo">TIPO / ATRIBUTO</h3>
+            <h2 className='filtros-titulo'>Filtros</h2>
+            <h3 className="filtros-subtitulo">TIPO / ATRIBUTO</h3>
             <div className="filtros-lista">
                 {categorias.map(categoria => (
                     <label key={categoria} className="filtros-item">
@@ -36,6 +41,22 @@ function Navbar() {
                     </label>
                 ))}
             </div>
+            <h3 className="filtros-subtitulo">Tipo Carta</h3>
+            <div className="filtros-lista">
+                {cartas.map(cartas => (
+                    <label key={cartas} className="filtros-item">
+                        <input
+                            type="checkbox"
+                            checked={selecionados.includes(cartas)}
+                            onChange={() => handleChange(cartas)}
+                            className="filtros-checkbox"
+                        />
+                        <span className="filtros-texto">{cartas}</span>
+                    </label>
+                ))}
+            </div>
+            <button className="button-pesquisa">Pesquisar</button>
+            <button className="button-filtro">Limpar Filtros</button>
         </div>
     );
 }
