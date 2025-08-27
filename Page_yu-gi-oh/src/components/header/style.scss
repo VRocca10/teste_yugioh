@@ -4,20 +4,48 @@ header {
     align-items: center;
     background-color: black;
     justify-content: space-between;
-    padding: 0;
+    padding: 0 20px;
 
-        .search_bar {
-            width: 300px;
-            min-width: 200px;
-            margin: 0 20px;
-            padding: 5px 10px 5px 35px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
+    .search_bar {
+        width: 300px;
+        min-width: 200px;
+        margin: 0 20px;
+        padding: 5px 10px 5px 35px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
 
-            background-image: url('../../assets/Vector.svg');
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 20px 20px;
+        background-image: url('../../assets/Vector.svg');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 20px 20px;
+    }
+
+    .cart_icon_container {
+        position: relative;
+        display: inline-block;
+
+        .item_carrinho {
+            width: 40px;
+            height: 40px;
         }
+
+        .cart_count {
+            position: absolute;
+            top: -8px;     // ajusta para cima do ícone
+            right: -8px;   // ajusta para a direita do ícone
+            background-color: #F46D1B;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;   // garante que fique sobre o ícone
+            box-shadow: 0 0 3px rgba(0,0,0,0.5); // opcional, dá contraste
+        }
+    }
 }

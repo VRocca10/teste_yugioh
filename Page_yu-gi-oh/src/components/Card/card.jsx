@@ -1,17 +1,16 @@
 import "./style.scss";
-import ImagemCard from "../../assets/card.svg"
 
-function Card({titulo, preco}) {
+function Card({ titulo, preco, imagem, adicionarAoCarrinho }) {
     return (
         <div className="container">
-            <img src={ImagemCard} alt="Imagem de um card" className="card-image" />
+            <img src={imagem} alt={titulo} className="card-image" />
             <div className="card-info">
                 <h2 className="card-title">{titulo}</h2>
-                <p className="card-price">{preco}</p>
+                <p className="card-price">R$ {preco}</p>
             </div>
-            <button className="card-button">Comprar</button>
+            <button onClick={adicionarAoCarrinho} className="card-button">Comprar</button>
         </div>
-    )
+    );
 }
 
 export default Card;

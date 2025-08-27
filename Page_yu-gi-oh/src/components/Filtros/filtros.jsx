@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.scss';
 
-function Navbar() {
+function Filtros({ onPesquisar, onLimpar }) {
     const categorias = [
         'Agua', 'Beast', 'Beast Warrior', 'Continous', 'Counter', 'Creator God',
         'Cyberse', 'Dark', 'Dinosaur', 'Divine Beast', 'Divino', 'Dragon',
@@ -12,7 +12,7 @@ function Navbar() {
 
     const cartas = [
         'Armadilha', 'Counter', 'Mágica', 'Monstro', 'Skill Card', 'Token'
-    ]
+    ];
 
     const [selecionados, setSelecionados] = useState([]);
 
@@ -24,9 +24,20 @@ function Navbar() {
         );
     };
 
+    const handlePesquisar = () => {
+        // envia para o Home.jsx os filtros selecionados
+        onPesquisar(selecionados);
+    };
+
+    const handleLimpar = () => {
+        setSelecionados([]);
+        onLimpar();
+    };
+
     return (
         <div className="filtros-container">
-            <h2 className='filtros-titulo'>Filtros</h2>
+            <h2 className='filtros-titulo'>FILTROS</h2>
+
             <h3 className="filtros-subtitulo">TIPO / ATRIBUTO</h3>
             <div className="filtros-lista">
                 {categorias.map(categoria => (
@@ -41,24 +52,32 @@ function Navbar() {
                     </label>
                 ))}
             </div>
-            <h3 className="filtros-subtitulo">Tipo Carta</h3>
+
+            <h3 className="filtros-subtitulo">TIPO CARTA</h3>
             <div className="filtros-lista">
-                {cartas.map(cartas => (
-                    <label key={cartas} className="filtros-item">
+                {cartas.map(carta => (
+                    <label key={carta} className="filtros-item">
                         <input
                             type="checkbox"
-                            checked={selecionados.includes(cartas)}
-                            onChange={() => handleChange(cartas)}
+                            checked={selecionados.includes(carta)}
+                            onChange={() => handleChange(carta)}
                             className="filtros-checkbox"
                         />
-                        <span className="filtros-texto">{cartas}</span>
+                        <span className="filtros-texto">{carta}</span>
                     </label>
                 ))}
             </div>
-            <button className="button-pesquisa">Pesquisar</button>
-            <button className="button-filtro">Limpar Filtros</button>
+
+            <div className="filtros-botoes">
+                <button className="button-pesquisa" onClick={handlePesquisar}>
+                    PESQUISAR
+                </button>
+                <button className="button-filtro" onClick={handleLimpar}>
+                    LIMPAR FILTROS
+                </button>
+            </div>
         </div>
     );
 }
 
-export default Navbar;
+export default Filtros;

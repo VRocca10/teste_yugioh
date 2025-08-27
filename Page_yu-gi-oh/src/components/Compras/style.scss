@@ -1,0 +1,145 @@
+.carrinho-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+
+    .title {
+        color: #34ac40;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 0;
+
+        .title-color {
+            color: #f46d1b;
+        }
+    }
+
+    .underline {
+        height: 2px;
+        width: 100%;
+        background-color: #34ac40;
+        margin: 5px 0 20px 0;
+    }
+
+    .content {
+        display: flex;
+        gap: 20px;
+    }
+
+    .produtos {
+        flex: 2;
+        border: 1px solid #ccc;
+        padding: 15px;
+
+        .produto {
+            display: flex;
+            gap: 15px;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd; // linha separadora
+
+            img {
+                width: 120px;
+                height: auto;
+                border: 1px solid #ddd;
+            }
+
+            .info {
+                flex: 1;
+
+                h3 {
+                    margin: 0 0 5px 0;
+                }
+
+                p {
+                    margin: 5px 0;
+                }
+
+                .linha-detalhes {
+                    display: flex;
+                    justify-content: space-between;
+                    font-weight: bold;
+                    margin-top: 10px;
+
+                    .preco {
+                        color: #34ac40;
+                    }
+
+                    .quantidade {
+                        color: #34ac40;
+                    }
+
+                    .total {
+                        color: #f46d1b;
+                    }
+                }
+            }
+        }
+
+        .subtotal,
+        .frete {
+            text-align: right;
+            font-weight: bold;
+            margin: 10px 0;
+
+            span {
+                color: #f46d1b;
+            }
+        }
+
+        .envio {
+            margin-top: 20px;
+
+            h3 {
+                color: #34ac40;
+            }
+
+            label {
+                display: block;
+                margin: 8px 0;
+            }
+
+            input[type="text"] {
+                margin-left: 10px;
+                width: 100px;
+            }
+        }
+    }
+
+    .resumo {
+        flex: 1;
+        background: #333;
+        color: #fff;
+        padding: 20px;
+
+        h3 {
+            color: #34ac40;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 8px 0;
+        }
+
+        .verde {
+            color: #34ac40;
+        }
+
+        .laranja {
+            color: #f46d1b;
+        }
+    }
+}
+
+.voltar-comprar {
+    margin-bottom: 20px;
+
+    a {
+        text-decoration: none;
+        color: #ff6600;
+        font-weight: bold;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

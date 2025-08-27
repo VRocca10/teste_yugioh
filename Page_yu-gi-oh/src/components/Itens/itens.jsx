@@ -1,18 +1,40 @@
-import { useState } from "react";
-import "./style.scss";
+import { useState, useEffect } from "react";
 import Card from "../Card/card.jsx";
+import "./style.scss";
 
-function Itens() {
+function Itens({ filtros, adicionarAoCarrinho }) {
     const [itensPorPagina, setItensPorPagina] = useState(10);
     const [paginaAtual, setPaginaAtual] = useState(1);
+    const [dados, setDados] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    const dados = Array.from({ length: 50 }, (_, i) => ({
-        id: i + 1,
-        titulo: `ARTMAGE FINMEL`,
-        preco: (Math.random() * 100).toFixed(2),
-    }));
+    const fetchDados = async (filtrosSelecionados = []) => {
+        try {
+            setLoading(true);
+            let url = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
+            if (filtrosSelecionados.length > 0) {
+                const params = filtrosSelecionados
+                    .map((filtro) => `race=${encodeURIComponent(filtro)}`)
+                    .join("&");
+                url += `?${params}`;
+            }
+            const response = await fetch(url);
+            const data = await response.json();
+            setDados(data.data || []);
+        } catch (error) {
+            console.error("Erro ao buscar cartas:", error);
+            setDados([]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchDados(filtros);
+        setPaginaAtual(1);
+    }, [filtros]);
+
     const totalPaginas = Math.ceil(dados.length / itensPorPagina);
-
     const inicio = (paginaAtual - 1) * itensPorPagina;
     const fim = inicio + itensPorPagina;
     const itensPagina = dados.slice(inicio, fim);
@@ -65,9 +87,27 @@ function Itens() {
             </div>
 
             <div className="lista-cards">
-                {itensPagina.map((item) => (
-                    <Card key={item.id} titulo={item.titulo} preco={`R$${item.preco}`} />
-                ))}
+                {loading ? (
+                    <p>Carregando...</p>
+                ) : dados.length === 0 ? (
+                    <p>Nenhuma carta encontrada</p>
+                ) : (
+                    itensPagina.map((item) => (
+                        <Card
+                            key={item.id}
+                            titulo={item.name}
+                            preco={item.atk ?? 0}
+                            imagem={item.card_images[0].image_url}
+                            adicionarAoCarrinho={() => adicionarAoCarrinho({
+                                id: item.id,
+                                titulo: item.name,
+                                preco: item.atk ?? 0,
+                                imagem: item.card_images[0].image_url,
+                                descricao: `ATK: ${item.atk ?? "N/A"} / DEF: ${item.def ?? "N/A"}`
+                            })}
+                        />
+                    ))
+                )}
             </div>
         </div>
     );
