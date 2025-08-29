@@ -15,7 +15,7 @@
         padding: 20px 30px;
         border-radius: 12px;
         text-align: center;
-        max-width: 90%;
+        max-width: 20%;
 
         button {
             margin-top: 15px;
@@ -25,6 +25,14 @@
             color: white;
             border-radius: 8px;
             cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-overlay {
+        .modal-content {
+            max-width: 90%;
         }
     }
 }

@@ -143,3 +143,15 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .carrinho-container .content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .carrinho-container .produtos .produto {
+        flex-direction: column;
+    }
+}
