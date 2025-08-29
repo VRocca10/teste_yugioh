@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: 220px !important;
+    width: 220px;
     text-align: center;
 
     .card-image {
@@ -9,7 +9,6 @@
         height: 300px;
         object-fit: cover;
         margin-bottom: 12px;
-        display: flex;
         align-self: center;
     }
 
@@ -38,6 +37,34 @@
 
         &:hover {
             background: #2e9438;
+        }
+    }
+
+    @media (max-width: 767px) {
+        width: 100%;
+
+        .card-image {
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+        }
+    }
+
+    @media (min-width: 1366px) {
+        width: 240px;
+
+        .card-image {
+            width: 220px;
+            height: 330px;
+        }
+    }
+
+    @media (min-width: 1920px) {
+        width: 260px;
+
+        .card-image {
+            width: 240px;
+            height: 360px;
         }
     }
 }

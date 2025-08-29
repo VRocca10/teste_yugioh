@@ -2,23 +2,50 @@ header {
     width: 100%;
     display: flex;
     align-items: center;
-    background-color: black;
     justify-content: space-between;
+    background-color: black;
     padding: 0 20px;
+    flex-wrap: wrap;
 
-    .search_bar {
-        width: 300px;
-        min-width: 200px;
-        margin: 0 20px;
-        padding: 5px 10px 5px 35px;
-        border-radius: 5px;
-        border: none;
-        outline: none;
+    .search_container {
+        flex: 1 1 200px;
+        margin: 5px 10px;
+        position: relative;
 
-        background-image: url('../../assets/Vector.svg');
-        background-repeat: no-repeat;
-        background-position: right 10px center;
-        background-size: 20px 20px;
+        .search_bar {
+            display: flex;
+            justify-self: center;
+            min-width: 200px;
+            padding: 5px 10px 5px 35px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            background-image: url('../../assets/Vector.svg');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px 20px;
+        }
+
+        .search_results,
+        .search_loading {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border: 1px solid #ccc;
+            z-index: 10;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 200px;
+            overflow-y: auto;
+
+            li {
+                padding: 8px 10px;
+                cursor: default;
+            }
+        }
     }
 
     .cart_icon_container {
@@ -32,8 +59,8 @@ header {
 
         .cart_count {
             position: absolute;
-            top: -8px;     // ajusta para cima do ícone
-            right: -8px;   // ajusta para a direita do ícone
+            top: -8px;
+            right: -8px;
             background-color: #F46D1B;
             color: white;
             font-size: 14px;
@@ -44,8 +71,28 @@ header {
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10;   // garante que fique sobre o ícone
-            box-shadow: 0 0 3px rgba(0,0,0,0.5); // opcional, dá contraste
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
+    }
+
+    // Mobile
+    @media (max-width: 767px) {
+        flex-direction: column;
+
+        .search_container {
+            width: 100%;
+            margin: 5px 0;
+        }
+    }
+
+    // 1366px Desktop médio
+    @media (min-width: 1366px) {
+        padding: 0 40px;
+    }
+
+    // 1920px Desktop grande
+    @media (min-width: 1920px) {
+        padding: 0 80px;
     }
 }
