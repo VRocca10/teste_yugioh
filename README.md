@@ -35,7 +35,7 @@ git clone https://github.com/VRocca10/teste_yugioh.git
 cd teste_yugioh
 ```
 
-3. Abra o arquivo `index.html` em seu navegador ou utilize um servidor local.
+3. Abra o arquivo `home.jsx` em seu navegador ou utilize um servidor local.
 
 ---
 
