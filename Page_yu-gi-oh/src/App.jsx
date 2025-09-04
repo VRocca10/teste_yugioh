@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/home/home.jsx";
-import Compras from "./components/Compras/compras.jsx";
+import Home from "./pages/home/Home.jsx";
+import Carrinho from "./pages/carrinho/Carrinho.jsx";
 
 function App() {
-  const [carrinho, setCarrinho] = useState([]);
+  const [carrinho, setCarrinho] = useState(() => {
+    const carrinhoSalvo = localStorage.getItem("carrinho");
+    return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
+  });
 
-  // Função para adicionar itens ao carrinho
+  useEffect(() => {
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  }, [carrinho]);
+
   const adicionarAoCarrinho = (produto) => {
     setCarrinho((prev) => {
       const index = prev.findIndex((p) => p.id === produto.id);
@@ -19,16 +25,28 @@ function App() {
     });
   };
 
+  const limparCarrinho = () => {
+    setCarrinho([]);
+    localStorage.removeItem("carrinho");
+  };
+
   return (
     <Router>
       <Routes>
         <Route
           path="/"
-          element={<Home carrinho={carrinho} adicionarAoCarrinho={adicionarAoCarrinho} />}
+          element={
+            <Home
+              carrinho={carrinho}
+              adicionarAoCarrinho={adicionarAoCarrinho}
+            />
+          }
         />
         <Route
           path="/compras"
-          element={<Compras carrinho={carrinho} />}
+          element={
+            <Carrinho carrinho={carrinho} limparCarrinho={limparCarrinho} />
+          }
         />
       </Routes>
     </Router>

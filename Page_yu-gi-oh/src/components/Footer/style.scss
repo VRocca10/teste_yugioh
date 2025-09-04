@@ -1,34 +1,37 @@
 .footer {
     background-color: #111;
     color: #fff;
-    padding: 1rem 2rem;
+    padding: 2rem 2rem;
     width: 100%;
     position: relative;
-    margin-top: 50px;
+    margin-top: 60px;
+
 
     &__container {
-        max-width: 1200px;
         width: 100%;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        align-items: center; // garante central vertical
+        align-items: center;
         position: relative;
 
         span {
             font-size: 0.875rem;
             color: #aaa;
-            line-height: 1; // para centralizar com a imagem
+            line-height: 1;
         }
 
         img {
             display: block;
-            height: 60px; // altura padrão
             width: auto;
             object-fit: contain;
+            position: absolute;
+            top: -81px;
+            right: 20px;
+            z-index: -1;
         }
 
-        // ===== Mobile =====
+
         @media (max-width: 767px) {
             flex-direction: column;
             gap: 10px;
@@ -36,21 +39,28 @@
 
             img {
                 height: 50px;
+                top: -67px;
             }
         }
 
-        // ===== Desktop médio 1366px =====
+
         @media (min-width: 1366px) {
             img {
                 height: 70px;
             }
         }
 
-        // ===== Desktop grande 1920px =====
+
         @media (min-width: 1920px) {
-            img {
-                height: 90px;
+            .footer {
+                margin-top: 60px;
+
+                img {
+                    height: 90px;
+                    top: -95px;
+                }
             }
+
         }
     }
 }

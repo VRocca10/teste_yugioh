@@ -1,43 +1,53 @@
 import { useState, useEffect } from "react";
-import Card from "../Card/card.jsx";
+import Card from "../Card/Card.jsx";
 import "./style.scss";
 
-function Itens({ filtros, adicionarAoCarrinho }) {
+function Itens({ filtros, termoBusca, adicionarAoCarrinho }) {
     const [itensPorPagina, setItensPorPagina] = useState(10);
     const [paginaAtual, setPaginaAtual] = useState(1);
     const [dados, setDados] = useState([]);
+    const [totalCards, setTotalCards] = useState(0);
     const [loading, setLoading] = useState(false);
 
-    const fetchDados = async (filtrosSelecionados = []) => {
+    const fetchDados = async (pagina, limite, filtrosSelecionados = [], busca = "") => {
         try {
             setLoading(true);
-            let url = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
+            let offset = (pagina - 1) * limite;
+            let url = `https://db.ygoprodeck.com/api/v7/cardinfo.php?num=${limite}&offset=${offset}`;
+
+            // Adiciona filtros
             if (filtrosSelecionados.length > 0) {
                 const params = filtrosSelecionados
                     .map((filtro) => `race=${encodeURIComponent(filtro)}`)
                     .join("&");
-                url += `?${params}`;
+                url += `&${params}`;
             }
+
+            // Adiciona termo de busca
+            if (busca && busca.trim().length >= 1) {
+                url += `&fname=${encodeURIComponent(busca.trim())}`;
+            }
+
             const response = await fetch(url);
             const data = await response.json();
+
             setDados(data.data || []);
+            setTotalCards(data.meta?.total_count || 14000); // fallback
         } catch (error) {
             console.error("Erro ao buscar cartas:", error);
             setDados([]);
+            setTotalCards(0);
         } finally {
             setLoading(false);
         }
     };
 
+    // Atualiza dados sempre que mudar pagina, filtros, termo de busca ou itens por página
     useEffect(() => {
-        fetchDados(filtros);
-        setPaginaAtual(1);
-    }, [filtros]);
+        fetchDados(paginaAtual, itensPorPagina, filtros, termoBusca);
+    }, [paginaAtual, itensPorPagina, filtros, termoBusca]);
 
-    const totalPaginas = Math.ceil(dados.length / itensPorPagina);
-    const inicio = (paginaAtual - 1) * itensPorPagina;
-    const fim = inicio + itensPorPagina;
-    const itensPagina = dados.slice(inicio, fim);
+    const totalPaginas = Math.ceil(totalCards / itensPorPagina);
 
     return (
         <div className="box">
@@ -92,19 +102,21 @@ function Itens({ filtros, adicionarAoCarrinho }) {
                 ) : dados.length === 0 ? (
                     <p>Nenhuma carta encontrada</p>
                 ) : (
-                    itensPagina.map((item) => (
+                    dados.map((item) => (
                         <Card
                             key={item.id}
                             titulo={item.name}
                             preco={item.atk ?? 0}
                             imagem={item.card_images[0].image_url}
-                            adicionarAoCarrinho={() => adicionarAoCarrinho({
-                                id: item.id,
-                                titulo: item.name,
-                                preco: item.atk ?? 0,
-                                imagem: item.card_images[0].image_url,
-                                descricao: `ATK: ${item.atk ?? "N/A"} / DEF: ${item.def ?? "N/A"}`
-                            })}
+                            adicionarAoCarrinho={() =>
+                                adicionarAoCarrinho({
+                                    id: item.id,
+                                    titulo: item.name,
+                                    preco: item.atk ?? 0,
+                                    imagem: item.card_images[0].image_url,
+                                    descricao: `ATK: ${item.atk ?? "N/A"} / DEF: ${item.def ?? "N/A"}`,
+                                })
+                            }
                         />
                     ))
                 )}

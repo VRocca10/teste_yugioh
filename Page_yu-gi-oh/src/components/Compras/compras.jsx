@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
-function Compras({ carrinho = [] }) {
+function Compras({ carrinho = [], limparCarrinho }) {
     const [frete, setFrete] = useState(20);
     const [subtotal, setSubtotal] = useState(0);
 
@@ -77,11 +77,20 @@ function Compras({ carrinho = [] }) {
                     <div className="envio">
                         <h3>Formas de envio</h3>
                         <label>
-                            <input type="radio" name="frete" onChange={() => setFrete(15)} />{" "}
+                            <input
+                                type="radio"
+                                name="frete"
+                                onChange={() => setFrete(15)}
+                            />{" "}
                             Frete Fixo (R$ 15,00)
                         </label>
                         <label>
-                            <input type="radio" name="frete" defaultChecked onChange={() => setFrete(20)} />{" "}
+                            <input
+                                type="radio"
+                                name="frete"
+                                defaultChecked
+                                onChange={() => setFrete(20)}
+                            />{" "}
                             Frete combinado (R$ 20,00)
                         </label>
                     </div>
@@ -89,7 +98,9 @@ function Compras({ carrinho = [] }) {
 
                 {/* Resumo da compra */}
                 <div className="resumo">
-                    <h3>Resumo da <span className="laranja">compra</span></h3>
+                    <h3>
+                        Resumo da <span className="laranja">compra</span>
+                    </h3>
                     <p>Total dos produtos: </p>
                     <span className="verde">R$ {subtotal.toFixed(2)}</span>
                     <div className="underline"></div>
@@ -98,6 +109,13 @@ function Compras({ carrinho = [] }) {
                     <div className="underline"></div>
                     <h2>TOTAL A PAGAR: </h2>
                     <span className="laranja">R$ {totalAPagar.toFixed(2)}</span>
+
+                    {/* Botão para limpar o carrinho */}
+                    {carrinho.length > 0 && (
+                        <button onClick={limparCarrinho} className="btn-limpar">
+                            Esvaziar carrinho
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

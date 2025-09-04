@@ -20,7 +20,7 @@
         margin-bottom: 12px;
         color: #F46D1B;
         text-transform: uppercase;
-
+        margin-top: 15px;
     }
 
     .filtros-lista {
@@ -64,22 +64,26 @@
         }
     }
 
-    button {
-        color: #FFF;
-        border: none;
-        border-radius: 3px;
-        padding: 5px;
-        size: 16px;
-        margin-top: 10px;
-    }
+    .filtros-botoes {
+        display: flex;
 
-    .button-pesquisa {
-        background-color: #34AC40;
-        margin-right: 10px;
+        button {
+            color: #FFF;
+            border: none;
+            border-radius: 3px;
+            padding: 5px;
+            size: 16px;
+            margin-top: 20px;
+        }
 
-    }
+        .button-pesquisa {
+            background-color: #34AC40;
+            margin-right: 10px;
 
-    .button-filtro {
-        background-color: #F46D1B;
+        }
+
+        .button-filtro {
+            background-color: #F46D1B;
+        }
     }
 }

@@ -1,5 +1,5 @@
 .carrinho-container {
-    padding: 20px;
+    padding: 50px;
     font-family: Arial, sans-serif;
 
     .title {
@@ -25,6 +25,7 @@
         gap: 20px;
     }
 
+    
     .produtos {
         flex: 2;
         border: 1px solid #ccc;
@@ -35,7 +36,7 @@
             gap: 15px;
             padding-bottom: 15px;
             margin-bottom: 15px;
-            border-bottom: 1px solid #ddd; // linha separadora
+            border-bottom: 1px solid #ddd; 
 
             img {
                 width: 120px;
@@ -105,11 +106,20 @@
         }
     }
 
+    
     .resumo {
         flex: 1;
         background: #333;
         color: #fff;
         padding: 20px;
+
+        
+        min-height: 400px;
+        max-height: 400px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         h3 {
             color: #34ac40;
@@ -126,9 +136,29 @@
 
         .laranja {
             color: #f46d1b;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        
+        .btn-limpar {
+            padding: 7px 15px;
+            background: #f46d1b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            transition: background 0.3s ease;
+
+            &:hover {
+                background: #d85a16;
+            }
         }
     }
 }
+
 
 .voltar-comprar {
     margin-bottom: 20px;
@@ -144,6 +174,7 @@
     }
 }
 
+
 @media (max-width: 768px) {
     .carrinho-container .content {
         display: flex;
@@ -153,5 +184,10 @@
 
     .carrinho-container .produtos .produto {
         flex-direction: column;
+    }
+
+    .carrinho-container .resumo {
+        min-height: auto;
+        max-height: none;
     }
 }

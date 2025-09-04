@@ -3,9 +3,9 @@ import Header from "../../components/header/header";
 import Compras from "../../components/Compras/compras";
 import Footer from "../../components/Footer/footer";
 
-function Carrinho() {
+function Carrinho({ carrinho, limparCarrinho }) {
     return (
-        <div className="container-fluid carrinho-container">
+        <div >
             <div className="row">
                 <div className="col-12">
                     <Header />
@@ -14,7 +14,7 @@ function Carrinho() {
 
             <div className="row">
                 <div className="col-12 compras-wrapper">
-                    <Compras />
+                    <Compras carrinho={carrinho} limparCarrinho={limparCarrinho} />
                 </div>
             </div>
 
