@@ -1,12 +1,95 @@
-# React + Vite
+# Yu-Gi-Oh! Test Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação web relacionada ao universo de Yu-Gi-Oh!, desenvolvida para testes e demonstração de conceitos.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Funcionalidades
 
-## Expanding the ESLint configuration
+- Visualização de cards de Yu-Gi-Oh!
+- Sistema de busca/filtragem de cards
+- Interface responsiva
+- Integração com API de Yu-Gi-Oh!
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- [Yugioh API](https://db.ygoprodeck.com/api-guide/) (ou API similar)
+
+---
+
+## 📦 Instalação
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/VRocca10/teste_yugioh.git
+```
+
+2. Acesse o diretório do projeto:
+```bash
+cd teste_yugioh
+```
+
+3. Abra o arquivo `home.jsx` em seu navegador ou utilize um servidor local.
+
+---
+
+## 🎯 Como Usar
+
+1. Abra a aplicação em seu navegador
+2. Navegue pela lista de cards exibidos
+3. Utilize a barra de busca para encontrar cards específicos
+4. Clique em um card para visualizar mais detalhes
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+teste_yugioh/
+├── home.jsx
+├── Carrinho.jsx/
+│   └── style.Scss
+├── Components/
+├── assets/
+│   └── (arquivos de imagem)
+└── README.md
+```
+
+---
+
+## 🤝 Contribuindo
+
+Contribuições são sempre bem-vindas! Para contribuir:
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+---
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 👥 Autor
+
+- [VRocca10](https://github.com/VRocca10)
+
+---
+
+## 🔗 Links Úteis
+
+- [Documentação da API de Yu-Gi-Oh!](https://db.ygoprodeck.com/api-guide/)
+- [Site Oficial de Yu-Gi-Oh!](https://www.yugioh-card.com/)
+
+---
+
