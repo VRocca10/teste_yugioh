@@ -52,7 +52,7 @@ function Home({ carrinho, adicionarAoCarrinho }) {
                 onBuscar={handleBuscar}
             />
 
-            <div className="row mt-3 ">
+            <div className="row m-3 ">
                 <div className="col-md-2 pe-3 ">
                     <div className="filtros">
                         <Filtros onPesquisar={handlePesquisar} onLimpar={handleLimpar} />
