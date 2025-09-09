@@ -1,6 +1,6 @@
 .carrinho-container {
     padding: 50px;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
 
     .title {
         color: #34ac40;
@@ -25,7 +25,6 @@
         gap: 20px;
     }
 
-    
     .produtos {
         flex: 2;
         border: 1px solid #ccc;
@@ -36,7 +35,7 @@
             gap: 15px;
             padding-bottom: 15px;
             margin-bottom: 15px;
-            border-bottom: 1px solid #ddd; 
+            border-bottom: 1px solid #ddd;
 
             img {
                 width: 120px;
@@ -49,46 +48,100 @@
 
                 h3 {
                     margin: 0 0 5px 0;
+                    font-size: 16px;
+                    font-weight: bold;
                 }
 
                 p {
                     margin: 5px 0;
+                    display: flex;
+                    flex-direction: column;
+
+                    span {
+                        font-weight: bold;
+                        color: #f46d1b; // Valores laranja
+                        margin-top: 3px;
+                    }
                 }
 
                 .linha-detalhes {
                     display: flex;
                     justify-content: space-between;
-                    font-weight: bold;
                     margin-top: 10px;
 
-                    .preco {
-                        color: #34ac40;
-                    }
+                    p {
+                        margin: 0;
+                        flex-direction: column;
 
-                    .quantidade {
-                        color: #34ac40;
-                    }
+                        b {
+                            margin-bottom: 3px;
+                        }
 
-                    .total {
-                        color: #f46d1b;
+                        span {
+                            font-weight: bold;
+                            margin-top: 3px;
+                        }
+
+                        
+                        &.preco span {
+                            color: #34ac40; 
+                            font-size: 18px;
+                        }
+
+                        &.quantidade span {
+                            color: #34ac40;
+                            font-size: 18px;
+                        }
+
+                        &.total span {
+                            color: #f46d1b;
+                            font-size: 24px;
+                        }
                     }
                 }
+
             }
         }
 
-        .subtotal,
+        .subtotal {
+            text-align: right;
+            font-weight: bold;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+
+            span {
+                margin-top: 3px;
+                font-weight: bold;
+                color: #f46d1b;
+                font-size: 24px;
+            }
+        }
+
         .frete {
             text-align: right;
             font-weight: bold;
             margin: 10px 0;
+            display: flex;
+            flex-direction: column;
 
             span {
+                margin-top: 3px;
+                font-weight: bold;
                 color: #f46d1b;
+                font-size: 24px;
             }
         }
 
         .envio {
             margin-top: 20px;
+
+            span {
+                color: #f46d1b;
+            }
 
             h3 {
                 color: #34ac40;
@@ -97,50 +150,66 @@
             label {
                 display: block;
                 margin: 8px 0;
+
+                input[type="text"] {
+                    margin-top: 5px;
+                    width: 100px;
+                    display: block;
+                    margin-left: 10px;
+                }
             }
 
-            input[type="text"] {
-                margin-left: 10px;
-                width: 100px;
+            .valor-combinado {
+                display: flex;
+                padding: 4px 20px;
+                align-items: center;
+                font-size: 12px;
             }
         }
     }
 
-    
     .resumo {
         flex: 1;
         background: #333;
         color: #fff;
         padding: 20px;
-
-        
         min-height: 400px;
-        max-height: 400px;
-
+        max-height: 460px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        padding-bottom: 1px;
+        border-bottom: 1px solid #ddd;
 
         h3 {
             color: #34ac40;
             margin-bottom: 15px;
+            font-size: 26px;
         }
 
         p {
             margin: 8px 0;
+            display: flex;
+            flex-direction: column;
+            font-size: 18px;
         }
 
         .verde {
             color: #34ac40;
+            font-weight: bold;
+            margin-top: 3px;
+            font-size: 26px;
         }
 
         .laranja {
             color: #f46d1b;
             font-size: 28px;
             font-weight: bold;
+            margin-top: 3px;
+            font-size: 36px;
+            margin-bottom: 5px;
         }
 
-        
         .btn-limpar {
             padding: 7px 15px;
             background: #f46d1b;
@@ -151,14 +220,18 @@
             font-weight: bold;
             text-align: center;
             transition: background 0.3s ease;
+            margin: 5px;
 
             &:hover {
                 background: #d85a16;
             }
         }
+
+        h2 {
+            font-size: 26px;
+        }
     }
 }
-
 
 .voltar-comprar {
     margin-bottom: 20px;
@@ -174,7 +247,6 @@
     }
 }
 
-
 @media (max-width: 768px) {
     .carrinho-container .content {
         display: flex;
@@ -189,5 +261,25 @@
     .carrinho-container .resumo {
         min-height: auto;
         max-height: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .carrinho-container {
+        padding: 20px;
+    }
+
+    .carrinho-container .title {
+        font-size: 1.5rem;
+    }
+
+    .carrinho-container .produtos .produto img {
+        width: 100%;
+        height: auto;
+    }
+
+    .carrinho-container .produtos .produto .info .linha-detalhes {
+        flex-direction: column;
+        gap: 10px;
     }
 }

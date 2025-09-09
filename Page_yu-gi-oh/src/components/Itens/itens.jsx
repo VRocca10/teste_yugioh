@@ -8,6 +8,7 @@ function Itens({ filtros, termoBusca, adicionarAoCarrinho }) {
     const [dados, setDados] = useState([]);
     const [totalCards, setTotalCards] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
     const fetchDados = async (pagina, limite, filtrosSelecionados = [], busca = "") => {
         try {
@@ -47,6 +48,13 @@ function Itens({ filtros, termoBusca, adicionarAoCarrinho }) {
         fetchDados(paginaAtual, itensPorPagina, filtros, termoBusca);
     }, [paginaAtual, itensPorPagina, filtros, termoBusca]);
 
+    // Detecta se está em mobile e atualiza reativamente
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 480);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     const totalPaginas = Math.ceil(totalCards / itensPorPagina);
 
     return (
@@ -71,28 +79,57 @@ function Itens({ filtros, termoBusca, adicionarAoCarrinho }) {
                 </div>
 
                 <div className="paginacao">
-                    <button onClick={() => setPaginaAtual(paginaAtual - 1)} disabled={paginaAtual === 1}>
-                        &lt;
-                    </button>
+                    {/* Setas só aparecem em desktop */}
+                    {!isMobile && (
+                        <button
+                            onClick={() => setPaginaAtual(paginaAtual - 1)}
+                            disabled={paginaAtual === 1}
+                        >
+                            &lt;
+                        </button>
+                    )}
 
                     {Array.from({ length: totalPaginas }, (_, i) => {
-                        if (i + 1 >= paginaAtual - 2 && i + 1 <= paginaAtual + 2) {
-                            return (
-                                <button
-                                    key={i}
-                                    onClick={() => setPaginaAtual(i + 1)}
-                                    className={paginaAtual === i + 1 ? "ativo" : ""}
-                                >
-                                    {i + 1}
-                                </button>
-                            );
+                        const pagina = i + 1;
+
+                        if (isMobile) {
+                            // Mobile: mostra apenas anterior, atual e próxima
+                            if (pagina >= paginaAtual - 1 && pagina <= paginaAtual + 1) {
+                                return (
+                                    <button
+                                        key={i}
+                                        onClick={() => setPaginaAtual(pagina)}
+                                        className={paginaAtual === pagina ? "ativo" : ""}
+                                    >
+                                        {pagina}
+                                    </button>
+                                );
+                            }
+                        } else {
+                            // Desktop: mostra 2 antes e 2 depois
+                            if (pagina >= paginaAtual - 2 && pagina <= paginaAtual + 2) {
+                                return (
+                                    <button
+                                        key={i}
+                                        onClick={() => setPaginaAtual(pagina)}
+                                        className={paginaAtual === pagina ? "ativo" : ""}
+                                    >
+                                        {pagina}
+                                    </button>
+                                );
+                            }
                         }
                         return null;
                     })}
 
-                    <button onClick={() => setPaginaAtual(paginaAtual + 1)} disabled={paginaAtual === totalPaginas}>
-                        &gt;
-                    </button>
+                    {!isMobile && (
+                        <button
+                            onClick={() => setPaginaAtual(paginaAtual + 1)}
+                            disabled={paginaAtual === totalPaginas}
+                        >
+                            &gt;
+                        </button>
+                    )}
                 </div>
             </div>
 

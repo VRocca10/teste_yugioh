@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Header from "../../components/Header/Header.jsx";
+import Header from "../../components/header/header.jsx";
 import Filtros from "../../components/Filtros/Filtros.jsx";
 import Paginacao from "../../components/Paginacao/Paginacao.jsx";
 import Itens from "../../components/Itens/itens.jsx";
-import Footer from "../../components/Footer/Footer.jsx";
+import Footer from "../../components/Footer/footer.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
 import "./style.scss";
 
@@ -52,9 +52,11 @@ function Home({ carrinho, adicionarAoCarrinho }) {
                 onBuscar={handleBuscar}
             />
 
-            <div className="row mt-3">
-                <div className="col-md-2 pe-3">
-                    <Filtros onPesquisar={handlePesquisar} onLimpar={handleLimpar} />
+            <div className="row mt-3 ">
+                <div className="col-md-2 pe-3 ">
+                    <div className="filtros">
+                        <Filtros onPesquisar={handlePesquisar} onLimpar={handleLimpar} />
+                    </div>
                 </div>
 
                 <div className="col-md-10 ps-md-5">
